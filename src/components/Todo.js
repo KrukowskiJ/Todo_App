@@ -23,7 +23,8 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
     return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
 
-  return todos.map((todo, index) => (
+  return <div className="todo-list">
+  {todos.map((todo, index) => (
     <div
       className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
       key={index}
@@ -43,7 +44,8 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
         />
       </div>
     </div>
-  ));
+  ))}
+  </div>
 };
 
 export default Todo;
