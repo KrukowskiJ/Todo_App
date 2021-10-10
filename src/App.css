@@ -100,6 +100,15 @@ h1 {
   position: relative;
 }
 
+.todo-name {
+  cursor: pointer;
+   display: flex;
+   margin:  auto;
+   color: #fff;
+   padding: 20px;
+   width: 100%;
+ }
+
 .todo-row {
   display: flex;
   justify-content: space-between;
@@ -112,7 +121,6 @@ h1 {
     rgba(255, 84, 17, 1) 100%
   );
 
-  padding: 16px;
   border-radius: 5px;
   width: 90%;
 }

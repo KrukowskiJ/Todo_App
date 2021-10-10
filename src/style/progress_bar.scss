@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+
+  margin: 20px auto;
+  h1 {
+    text-align: center;
+  }
+  .progressbar-container {
+    position: relative;
+    width: 400px;
+    height: 50px;
+    border: 1px solid #FFF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    .progressbar-complete {
+      position: absolute;
+      left: 0;
+      top: 0px;
+      height: 100%;
+      background-color: #5225bd;
+      border-radius: 10px;
+      animation: g 5000ms infinite ease-in-out;
+      z-index: 2;
+      .progressbar-liquid {
+        z-index: 1;
+        width: 70px;
+        height: 70px;
+        animation: g 5000ms infinite ease-in-out, r 3000ms infinite cubic-bezier(0.5, 0.5, 0.5, 0.5);
+        position: absolute;
+        right: -5px;
+        top: -10px;
+        background-color: #5225bd;
+        border-radius: 40%;
+      }
+    }
+    .progress {
+      z-index: 2;
+    }
+  }
+}
+
+@keyframes g {
+  0% { background: rgba(93, 12, 255, 1) 0%;}
+  50% { background:rgba(155, 0, 250, 1) 100%; }
+  100% { background: rgba(93, 12, 255, 1) 0%;}
+}
+
+@keyframes r {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
+}
