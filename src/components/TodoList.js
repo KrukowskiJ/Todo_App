@@ -28,13 +28,20 @@ function TodoList() {
     }
     console.log("update!!!!!")
     setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
+    
   };
 
   const removeTodo = id => {
+    const removedItem = [...todos].find(todo => todo.id == id);
+    console.log("status" + removedItem.isComplete)
     const removedArr = [...todos].filter(todo => todo.id !== id);
     console.log("remove!!!!!")
+    if(removedItem.isComplete)
+    setCompleted(completed-1);
+
     setTodos(removedArr);
-    setCounter(counter-1)
+    setCounter(counter-1);
+    console.log(counter,completed);
   };
 
   const completeTodo = id => {
@@ -49,6 +56,7 @@ function TodoList() {
       return todo;
     });
     setTodos(updatedTodos);
+    console.log(counter,completed);
   };
 
   return (
@@ -61,8 +69,9 @@ function TodoList() {
         removeTodo={removeTodo}
         updateTodo={updateTodo}
       />
-    <ProgressBar progress={completed/counter*100}/> 
-    </>
+    <ProgressBar progress={Math.round(completed/counter*100*100)/100}/> 
+    
+   </>
   );
 }
 
