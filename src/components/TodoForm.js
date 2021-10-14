@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import firebase from "../firebase"
+import {firestore, auth } from "../firebase"
 function TodoForm(props) {
-  const [input, setInput] = useState(props.edit ? props.edit.value : '');
-
+  const [input, setInput] = useState(props.edit ? props.edit.value : '')
+  
+  const todosRef = firestore.collection(`users/${auth.currentUser.uid}/todos`);
+  
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -15,10 +18,31 @@ function TodoForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    if (!input || /^\s*$/.test(input)) {
+      return;
+    }
+      todosRef.add({
+        text: input,
+        complete: false,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    
+    setInput('');
+  };
+  const handleEdit = e => {
+    e.preventDefault();
+    if (!input || /^\s*$/.test(input)) {
+      return;
+    }
+      todosRef.doc(props.edit.id).delete();
+      todosRef.add({
+        text: input,
+        complete: false,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    
     props.onSubmit({
-      id: Math.floor(Math.random() * 10000),
-      text: input
+      edit:false
     });
     setInput('');
   };
@@ -35,7 +59,7 @@ function TodoForm(props) {
             ref={inputRef}
             className='todo-input edit'
           />
-          <button onClick={handleSubmit} className='todo-button edit'>
+          <button onClick={handleEdit} className='todo-button edit'>
             Update
           </button>
         </>

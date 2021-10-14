@@ -2,75 +2,44 @@ import React, { useState } from 'react';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
 import ProgressBar from './ProgressBar'
-
+import { auth, firestore } from "../firebase"
+import { useCollectionData } from "react-firebase-hooks/firestore"
 function TodoList() {
-  const [todos, setTodos] = useState([]);
-  const [counter, setCounter] = useState(0);
+  const todosRef = firestore.collection(`users/${auth.currentUser.uid}/todos`);
+  const dataRef = firestore.collection(`users/${auth.currentUser.uid}/data`);
   const [completed, setCompleted] = useState(0);
-
-
-  const addTodo = todo => {
-    if (!todo.text || /^\s*$/.test(todo.text)) {
-      return;
-    }
-   
-    const newTodos = [todo, ...todos];
-
-    setTodos(newTodos);
-    console.log(...todos);
-    setCounter(counter+1)
-    console.log(counter);
-  };
-
-  const updateTodo = (todoId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
-    console.log("update!!!!!")
-    setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
-    
-  };
-
+  const [todos] = useCollectionData(todosRef, {idField:"id"});
+  const [data] = useCollectionData(dataRef);
   const removeTodo = id => {
-    const removedItem = [...todos].find(todo => todo.id == id);
-    console.log("status" + removedItem.isComplete)
-    const removedArr = [...todos].filter(todo => todo.id !== id);
-    console.log("remove!!!!!")
-    if(removedItem.isComplete)
-    setCompleted(completed-1);
-
-    setTodos(removedArr);
-    setCounter(counter-1);
-    console.log(counter,completed);
+    todosRef.doc(id).delete();
   };
 
   const completeTodo = id => {
-    let updatedTodos = todos.map(todo => {
+    todos.map(todo => {
       if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
-        todo.isComplete ? 
-        setCompleted(completed+1) : 
-        setCompleted(completed-1);
-        console.log("complete!!!!!")
+        {console.log("2",todos ? todos:null )} 
+        todosRef.doc(todo.id).set({complete: !todo.complete}, {merge: true});
+        setCompleted(todo.complete ? completed+1 : completed-1);
+        if(dataRef) dataRef.set({
+          currentCompleted: completed,
+        });
       }
-      return todo;
     });
-    setTodos(updatedTodos);
-    console.log(counter,completed);
   };
 
   return (
     <>
+     {console.log("1",todos ? todos:null )} 
       <h1>What's the plan for Today?</h1>
-      <TodoForm onSubmit={addTodo} />
+      <TodoForm />
+      {console.log("before",todos ? todos:null )}
       <Todo
-        todos={todos}
         completeTodo={completeTodo}
         removeTodo={removeTodo}
-        updateTodo={updateTodo}
       />
-    <ProgressBar progress={Math.round(completed/counter*100*100)/100}/> 
-    
+       {console.log("after",todos ? todos:null )}
+      {console.log(todos ? todos.length:null,todos ? completed:null )}
+    <ProgressBar progress={Math.round(todos ? (todos.length*10000/100) : 0)}/> 
    </>
   );
 }
