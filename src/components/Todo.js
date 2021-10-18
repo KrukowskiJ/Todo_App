@@ -14,6 +14,7 @@ const Todo = ({  completeTodo, removeTodo }) => {
     value: ''
   });
 
+
  function submitUpdate () {
     setEdit({
       id: null,
@@ -30,7 +31,7 @@ const Todo = ({  completeTodo, removeTodo }) => {
     <div
       className={todo.complete ? 'todo-row complete' : 'todo-row'}
     >
-      <div className='todo-name' key={todo.id} onClick={() => completeTodo(todo.id)} >
+      <div className='todo-name' key={todo.id} onClick={() =>completeTodo(todo.id)} >
         {todo.text}
       </div>
       <div className='icons'>

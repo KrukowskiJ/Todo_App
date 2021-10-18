@@ -3,9 +3,7 @@ import firebase from "../firebase"
 import {firestore, auth } from "../firebase"
 function TodoForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : '')
-  
   const todosRef = firestore.collection(`users/${auth.currentUser.uid}/todos`);
-  
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -26,9 +24,9 @@ function TodoForm(props) {
         complete: false,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
-    
     setInput('');
   };
+  
   const handleEdit = e => {
     e.preventDefault();
     if (!input || /^\s*$/.test(input)) {

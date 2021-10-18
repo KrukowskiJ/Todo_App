@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import TodoImg from './img/todo_img4.svg';
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "./firebase";
 import firebase from './firebase';
