@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+// ---app colors;
+$bg-color: linear-gradient(
+    90deg,
+    rgba(48, 16, 255, 1) 0%,
+    rgba(100, 115, 255, 1) 100%
+  );
+$todo-bg: #161a2b;
+$text-color: #e2e2e2;
+
+// ---form colors / add todo;
+$add-border-color: #5d0cff;
+$add-button-color:linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+  
+
+// ---form colors / edit todo;
+$edit-border-color: #149fff;
+$edit-button-color:linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+
+// tasks colors
+$todo-text-color: #fff;
+$first: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+    );
+$second: linear-gradient(
+    90deg,
+    rgba(255, 12, 241, 1) 0%,
+    rgba(250, 0, 135, 1) 100%
+  );
+$third: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+$fourth:  linear-gradient(
+    90deg,
+    rgba(255, 118, 20, 1) 0%,
+    rgba(255, 84, 17, 1) 100%
+  );
+
+  
+// progress-bar colors
+ $liquid-color1: rgba(93, 12, 255, 1) 0%;
+ $liquid-color2: rgba(155, 0, 250, 1) 100%;
+ $liquid-color3: rgba(93, 12, 255, 1) 0%;
+ $animation-type: 5000ms infinite ease-in-out;
+ $animation-type2: 3000ms infinite cubic-bezier(0.5, 0.5, 0.5, 0.5);
+
+
