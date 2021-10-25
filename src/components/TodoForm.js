@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import firebase from "../firebase"
 import {firestore, auth } from "../firebase"
+import { useMediaQuery } from 'react-responsive'
+
+
 function TodoForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : '')
   const todosRef = firestore.collection(`users/${auth.currentUser.uid}/todos`);
   const inputRef = useRef(null);
-
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+  
   useEffect(() => {
-    inputRef.current.focus();
+    //inputRef.current.focus();
   });
 
   const handleChange = e => {

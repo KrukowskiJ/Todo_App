@@ -9,7 +9,9 @@ function TodoList() {
   const [todos] = useCollectionData(todosRef, {idField:"id"});
 
   const removeTodo = id => {
+    todosRef.doc(id).set( {merge: true});
     todosRef.doc(id).delete();
+   
   };
 
   const completeTodo = id => {
