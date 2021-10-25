@@ -25,7 +25,7 @@ function ProgressBar(props){
             <div className="progressbar-complete" style={{width: `${progress}%`}}>
               <div className="progressbar-liquid"></div>
             </div>
-            <span className="progress">{todos ? progress : 0} %</span>
+            <span className="progress">{todos && progress ? progress : 0} %</span>
           </div>
         </div>
       )
