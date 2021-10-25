@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './style/App.scss';
 import TodoList from './components/TodoList';
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "./firebase";
@@ -8,24 +8,26 @@ import firebase from './firebase';
 const SignInWithGoogle =  () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
 const SignIn =  () => (
-  <main>
-    <button onClick={SignInWithGoogle}>Sign In With Google</button>
-  </main>
+  <div class="loginbox">
+    <div class="loginbt" onClick={SignInWithGoogle}>Sign In With Google</div>
+  </div>
 );
 
 const SignOut =  () => auth.signOut();
 
 function App() {
   const [user] = useAuthState(auth);
-  return user ? (
+  return user ? (<>
     <div className="main-component">
 
     <div className="todo-app">
     
     <TodoList></TodoList>
     </div>
-    <button onClick={SignOut}>Sign Out</button>
     </div>
+    <div class="logoutbox">
+    <div class="logoutbt" onClick={SignOut}>Sign Out</div>
+    </div></>
   ): <SignIn/>;
 }
 
