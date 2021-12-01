@@ -6,11 +6,17 @@ import {auth} from "./firebase";
 import firebase from './firebase';
 
 const SignInWithGoogle =  () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+const SignInWithFB =  () => auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
 
 const SignIn =  () => (
+  <>
   <div class="loginbox">
     <div class="loginbt" onClick={SignInWithGoogle}>Sign In With Google</div>
   </div>
+   <div class="loginbox2">
+   <div class="loginbt" onClick={SignInWithFB}>Sign In With Facebook</div>
+ </div>
+ </>
 );
 
 const SignOut =  () => auth.signOut();
