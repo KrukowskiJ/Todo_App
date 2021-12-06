@@ -14,11 +14,21 @@ body {
 
 .main-component {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   height: 90vh;  
   max-height: --webkit-fill-available;
 }
+.user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  margin: 5px 5px 0 0;
+}
+  .user-info .column{
+    flex-direction: column;
+  }
 .todo-app {
   display: flex;
   flex-direction: column;
@@ -180,25 +190,26 @@ h1 {
 /*::-webkit-scrollbar-corner{
   background-color: #149fff;
 }*/
+
+.login-icon {
+
+
+}
+
 .loginbox {
   width: 30vw;
   height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
 }
-.loginbox2 {
-  width: 30vw;
-  height: 100vh;
+.loginbt {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: 45px;
-}
-.loginbt {
   padding: 20px 30px;
   border: 2px solid #f7f7f7;
   text-align: center;
@@ -207,6 +218,9 @@ h1 {
   overflow: hidden;
   transition: 0.2s;
   border-radius: 10px;
+  margin:20px;
+  width:40vw;
+  height: 10vh;
   &:hover {
     cursor: pointer;
     border-radius: 35px;
